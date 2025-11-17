@@ -14,68 +14,82 @@ class _ProfillePageState extends State<ProfillePage> {
   double sliderValue = 0.0;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Column(
-        children: [
-          TextField(
-            controller: controller,
-            decoration: InputDecoration(
-              labelText: 'Username',
-              border: OutlineInputBorder(),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            TextField(
+              controller: controller,
+              decoration: InputDecoration(
+                labelText: 'Username',
+                border: OutlineInputBorder(),
+              ),
+              onEditingComplete: () => setState(() {
+                FocusScope.of(context).unfocus();
+              }),
             ),
-            onEditingComplete: () => setState(() {
-              FocusScope.of(context).unfocus();
-            }),
-          ),
-          Text(controller.text),
-          Checkbox.adaptive(
-            tristate: true,
-            value: isChecked,
-            onChanged: (bool? value) {
-              setState(() {
-                isChecked = value;
-              });
-            },
-          ),
-          CheckboxListTile.adaptive(
-            tristate: true,
-            title: const Text('Accept Terms and Conditions'),
-            value: isChecked,
-            onChanged: (bool? value) {
-              setState(() {
-                isChecked = value;
-              });
-            },
-          ),
-          Switch.adaptive(
-            value: isSwitched,
-            onChanged: (bool value) {
-              setState(() {
-                isSwitched = value;
-              });
-            },
-          ),
-          SwitchListTile.adaptive(
-            value: isSwitched,
-            onChanged: (bool value) {
-              setState(() {
-                isSwitched = value;
-              });
-            },
-            title: const Text('Enable Notifications'),
-          ),
-          Slider.adaptive(
-            value: sliderValue,
-            divisions: 10,
-            onChanged: (double value) {
-              setState(() {
-                sliderValue = value;
-              });
-              print(value);
-            },
-          ),
-        ],
+            Text(controller.text),
+            Checkbox.adaptive(
+              tristate: true,
+              value: isChecked,
+              onChanged: (bool? value) {
+                setState(() {
+                  isChecked = value;
+                });
+              },
+            ),
+            CheckboxListTile.adaptive(
+              tristate: true,
+              title: const Text('Accept Terms and Conditions'),
+              value: isChecked,
+              onChanged: (bool? value) {
+                setState(() {
+                  isChecked = value;
+                });
+              },
+            ),
+            Switch.adaptive(
+              value: isSwitched,
+              onChanged: (bool value) {
+                setState(() {
+                  isSwitched = value;
+                });
+              },
+            ),
+            SwitchListTile.adaptive(
+              value: isSwitched,
+              onChanged: (bool value) {
+                setState(() {
+                  isSwitched = value;
+                });
+              },
+              title: const Text('Enable Notifications'),
+            ),
+            Slider.adaptive(
+              value: sliderValue,
+              divisions: 10,
+              onChanged: (double value) {
+                setState(() {
+                  sliderValue = value;
+                });
+                print(value);
+              },
+            ),
+            InkWell(
+              splashColor: Colors.teal,
+              onTap: () {
+                print("Image Tapped");
+              },
+              child: Container(
+                height: 200,
+                width: double.infinity,
+                color: Colors.white12,
+              ),
+            ),
+            //  Image.asset("assets/icons/uzbFlag.png"),
+          ],
+        ),
       ),
     );
   }
