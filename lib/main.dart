@@ -1,3 +1,4 @@
+import 'package:final_app/views/widget_tree.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,71 +21,20 @@ class MyApp extends StatelessWidget {
       brightness: Brightness.dark,
     ),
   ),
-  home: SafeArea(
-    child: Scaffold(
-      appBar: AppBar(
-        title: Text("My First Flutter App"),
-        centerTitle: true,
-      ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.teal,
-              ),
-              child: Text(
-                "Navigation Menu",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text("Home"),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text("Profile"),
-              onTap: () {},
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          FloatingActionButton(
-            onPressed: () {},
-            child: Icon(Icons.add),
-          ),
-          SizedBox(height: 10),
-          FloatingActionButton(
-            onPressed: () {},
-            child: Icon(Icons.remove),
-          ),
-        ],
-      ),
-      bottomNavigationBar: NavigationBar(
-        destinations: [
-          NavigationDestination(
-            icon: Icon(Icons.home),
-            label: "Home",
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.person),
-            label: "Profile",
-          ),
-        ],
-        onDestinationSelected: (int value) {},
-        selectedIndex: 1,
-      ),
-    ),
-  ),
+  home: MyHomePage(),
 );
+  }
+}
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return WidgetTree() ;
   }
 }
