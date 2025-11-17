@@ -1,3 +1,4 @@
+import 'package:final_app/data/notifiers.dart';
 import 'package:final_app/views/widget_tree.dart';
 import 'package:flutter/material.dart';
 
@@ -13,28 +14,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-  debugShowCheckedModeBanner: false,
-  theme: ThemeData(
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: Colors.teal,
-      brightness: Brightness.dark,
-    ),
-  ),
-  home: MyHomePage(),
-);
-  }
-}
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return WidgetTree() ;
+    return ValueListenableBuilder(
+      valueListenable: isDarkModeNotifier,
+      builder: (context, isDarkMode, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: Colors.teal,
+              brightness: isDarkMode ? Brightness.dark : Brightness.light,
+            ),
+          ),
+          home: WidgetTree(),
+        );
+      },
+    );
   }
 }
