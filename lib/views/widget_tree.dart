@@ -1,10 +1,14 @@
+import 'package:final_app/data/constants.dart';
 import 'package:final_app/data/notifiers.dart';
 import 'package:final_app/views/pages/home_page.dart';
-import 'package:final_app/views/pages/profille_page.dart';
+import 'package:final_app/views/pages/settings_page.dart';
 import 'package:final_app/views/widgets/navbar_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-List<Widget> pages = [HomePage(), ProfillePage()];
+import 'pages/profile_page.dart';
+
+List<Widget> pages = [HomePage(), ProfilePage()];
 
 class WidgetTree extends StatelessWidget {
   const WidgetTree({super.key});
@@ -18,8 +22,11 @@ class WidgetTree extends StatelessWidget {
           centerTitle: true,
           actions: [
             IconButton(
-              onPressed: () {
+              onPressed: () async{
                 isDarkModeNotifier.value = !isDarkModeNotifier.value;
+                final SharedPreferences prefs = 
+                await SharedPreferences.getInstance();
+                await prefs.setBool(Kconstants.themeModeKey, isDarkModeNotifier.value);
               },
               icon: ValueListenableBuilder(
                 valueListenable: isDarkModeNotifier,
@@ -27,6 +34,12 @@ class WidgetTree extends StatelessWidget {
                   return Icon(isDarkMode ? Icons.dark_mode : Icons.light_mode);
                 },
               ),
+            ),
+            IconButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPageState()));
+              },
+              icon:  Icon(Icons.settings),
             ),
           ],
         ),
