@@ -14,3 +14,13 @@ class KTextStyle {
     fontSize: 16.0,
   );
 }
+
+class KValue{
+  static const String basicLayout = 'Basic Layout';
+  static const String advancedLayout = 'Advanced Layout';
+  static const String settings = 'Settings';
+  static const String home = 'Home';
+  static const String profile = 'Profile';
+  static const String about = 'About';
+  static const String logout = 'Logout';
+}
